@@ -29,11 +29,11 @@ nonCol.value = noneColor
 nonCol.addEventListener('input', (event) => {
   noneColor = event.target.value
 }, false)
-strCol = document.querySelector('#strokeColorPicker')
-strCol.value = strokeColor
-strCol.addEventListener('input', (event) => {
-  strokeColor = event.target.value
-}, false)
+// strCol = document.querySelector('#strokeColorPicker')
+// strCol.value = strokeColor
+// strCol.addEventListener('input', (event) => {
+//   strokeColor = event.target.value
+// }, false)
 
 
 sSectors = [undefined, undefined, undefined, undefined, undefined, undefined]
@@ -64,7 +64,7 @@ class sSector {
     ctx.fillStyle = this.color
     ctx.fill();
     ctx.strokeStyle = this.strokeColor
-    ctx.stroke()
+    // // ctx.stroke()
   }
   setColor(newColor, toDraw = true) {
     this.color = newColor
@@ -92,7 +92,7 @@ class mSector {
     ctx.fillStyle = this.color
     ctx.fill();
     ctx.strokeStyle = this.strokeColor
-    ctx.stroke()
+    // ctx.stroke()
   }
   setColor(newColor, toDraw = false) {
     this.color = newColor
@@ -120,7 +120,7 @@ class hSector {
     ctx.fillStyle = this.color
     ctx.fill();
     ctx.strokeStyle = this.strokeColor
-    ctx.stroke()
+    // ctx.stroke()
   }
   setColor(newColor, toDraw = true) {
     this.color = newColor

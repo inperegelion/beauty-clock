@@ -1,14 +1,19 @@
 const solidColor = 'red'
-const auxiliaryColor = 'green'
+const auxiliaryColor = 'yellow'
 const noneColor = 'rgba(255, 255, 255, 1)'
-const strokeColor = 'black'
+const strokeColor = 'rgba(0,0,0,0.2)'
 const canvas = document.getElementById('beauty-clock');
 const ctx = canvas.getContext('2d')
-
 
 sSectors = [undefined, undefined, undefined, undefined, undefined, undefined]
 mSectors = [undefined, undefined, undefined, undefined, undefined, undefined]
 hSectors = [undefined, undefined, undefined, undefined]
+hZones = {
+  0: [11, 0, 1],
+  3: [2, 3, 4],
+  6: [5, 6, 7],
+  9: [8, 9, 10]
+}
 
 class sSector {
   constructor() {
@@ -143,21 +148,10 @@ function drawAllClock() {
     element.draw()
     element.color = noneColor
   })
-
-
 }
 
 
 // convertor
-
-
-
-hZones = {
-  0: [11, 0, 1],
-  3: [2, 3, 4],
-  6: [5, 6, 7],
-  9: [8, 9, 10]
-}
 
 function setHourColors(hour) {
   for (zone in hZones) {
@@ -207,19 +201,7 @@ function setOuterRings(m10, m01, sectors) {
     sectors[m01].setColor(auxiliaryColor, false)
   }
 }
-// setOuterRings(5, 9)
 
-// sSectors[0].setColor(solidColor, false)
-// sSectors[1].setColor(auxiliaryColor, false)
-// mSectors[0].setColor(solidColor, false)
-// mSectors[1].setColor(auxiliaryColor, false)
-// hSectors[0].setColor(solidColor, false)
-// hSectors[1].setColor(auxiliaryColor, false)
-
-// drawAllClock()
-
-
-let x = 0
 
 function main_tick() {
   let now = new Date(),
@@ -240,7 +222,6 @@ function main_tick() {
   setHourColors(timeNumbers.hour)
   setOuterRings(timeNumbers.minLeft, timeNumbers.minRight, mSectors)
   setOuterRings(timeNumbers.secLeft, timeNumbers.secRight, sSectors)
-  // setSecondsColors(timeNumbers.secLeft, timeNumbers.secRight)
   drawAllClock()
 }
 
@@ -250,21 +231,3 @@ setInterval(() => {
   console.log('oi');
   main_tick()
 }, 1000)
-
-if (false) {
-  setInterval(function() {
-    if (x == 60) {
-      x = 0
-    }
-    setOuterRings(x)
-    drawAllClock()
-    x += 1
-  }, 100)
-}
-
-
-
-
-
-
-// sSector.draw()

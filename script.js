@@ -1,7 +1,7 @@
 var solidColor = '#ff0000'
 var auxiliaryColor = '#ffff00'
 var noneColor = '#ffffff'
-var strokeColor = '#cccccc'
+var strokeColor = '#000000'
 var outerRingRadius = 150
 var centerPosition = {
   x: 200,
@@ -29,6 +29,7 @@ nonCol.value = noneColor
 nonCol.addEventListener('input', (event) => {
   noneColor = event.target.value
 }, false)
+
 // strCol = document.querySelector('#strokeColorPicker')
 // strCol.value = strokeColor
 // strCol.addEventListener('input', (event) => {

@@ -1,14 +1,22 @@
-#canvas {
-  border: 1px solid black
-}
-#beauty-clock {
-  border: 1px solid black;
-  width: 200px;
-  height: 200px;
-}
-img{
+img {
   width: 600px;
   border-width: 5px;
   border-color: black;
   border-style: solid;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+canvas {
+  border: 1px solid black;
+  height: 40vh;
+  width: auto;
+  margin: 0 auto;
+}
+
+div.color-picker {
+  margin: 0 auto;
 }

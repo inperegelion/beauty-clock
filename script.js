@@ -1,9 +1,40 @@
-const solidColor = 'red'
-const auxiliaryColor = 'yellow'
-const noneColor = 'rgba(255, 255, 255, 1)'
-const strokeColor = 'rgba(0,0,0,0.2)'
+var solidColor = '#ff0000'
+var auxiliaryColor = '#ffff00'
+var noneColor = '#ffffff'
+var strokeColor = '#cccccc'
+var outerRingRadius = 150
+var centerPosition = {
+  x: 200,
+  y: 200
+}
 const canvas = document.getElementById('beauty-clock');
 const ctx = canvas.getContext('2d')
+ctx.canvas.width = 400;
+ctx.canvas.height = 400;
+
+let solCol, auxCol, nonCol, strCol
+
+solCol = document.querySelector('#solidColorPicker')
+solCol.value = solidColor
+solCol.addEventListener('input', (event) => {
+  solidColor = event.target.value
+}, false)
+auxCol = document.querySelector('#auxiliaryColorPicker')
+auxCol.value = auxiliaryColor
+auxCol.addEventListener('input', (event) => {
+  auxiliaryColor = event.target.value
+}, false)
+nonCol = document.querySelector('#noneColorPicker')
+nonCol.value = noneColor
+nonCol.addEventListener('input', (event) => {
+  noneColor = event.target.value
+}, false)
+strCol = document.querySelector('#strokeColorPicker')
+strCol.value = strokeColor
+strCol.addEventListener('input', (event) => {
+  strokeColor = event.target.value
+}, false)
+
 
 sSectors = [undefined, undefined, undefined, undefined, undefined, undefined]
 mSectors = [undefined, undefined, undefined, undefined, undefined, undefined]
@@ -17,9 +48,9 @@ hZones = {
 
 class sSector {
   constructor() {
-    this.x = 100 //absolute
-    this.y = 100
-    this.radius = 90
+    this.x = centerPosition.x //absolute
+    this.y = centerPosition.y
+    this.radius = outerRingRadius
     this.color = noneColor
     this.strokeColor = strokeColor
     this.sectorStart = Math.PI * (-2 / 3)
@@ -45,9 +76,9 @@ class sSector {
 
 class mSector {
   constructor() {
-    this.x = 100 //absolute
-    this.y = 100
-    this.radius = 60
+    this.x = centerPosition.x //absolute
+    this.y = centerPosition.y
+    this.radius = outerRingRadius * 2 / 3
     this.color = noneColor
     this.strokeColor = strokeColor
     this.sectorStart = Math.PI * (-2 / 3)
@@ -73,9 +104,9 @@ class mSector {
 
 class hSector {
   constructor() {
-    this.x = 100 //absolute
-    this.y = 100
-    this.radius = 30
+    this.x = centerPosition.x //absolute
+    this.y = centerPosition.y
+    this.radius = outerRingRadius / 3
     this.color = noneColor
     this.strokeColor = strokeColor
     this.sectorStart = Math.PI * (-3 / 4)
@@ -174,16 +205,13 @@ function setHourColors(hour) {
 }
 
 function setOuterRings(m10, m01, sectors) {
-  console.log('dec base:', m10, m01);
   sectors[m10].setColor(solidColor, false)
   if (m01 != 0) {
     if (m01 % 2 == 1) {
       m01 = m10 + ((m01 + 1) / 2)
-      console.log('m01:', m01);
       if (m01 >= 6) {
         m01 -= 6
       }
-
 
     } else if (m01 % 2 == 0) {
       m01 = m10 + (m01 / 2)
@@ -196,7 +224,6 @@ function setOuterRings(m10, m01, sectors) {
       }
       sectors[m01plus].setColor(auxiliaryColor, false)
     }
-    console.log('sector', m01);
 
     sectors[m01].setColor(auxiliaryColor, false)
   }
@@ -218,7 +245,6 @@ function main_tick() {
     secLeft: (now.getSeconds() - (now.getSeconds() % 10)) / 10,
     secRight: now.getSeconds() % 10
   }
-  console.log('Now time: ', timeNumbers.hour + ':' + timeNumbers.minLeft + timeNumbers.minRight + ':' + timeNumbers.secLeft + timeNumbers.secRight);
   setHourColors(timeNumbers.hour)
   setOuterRings(timeNumbers.minLeft, timeNumbers.minRight, mSectors)
   setOuterRings(timeNumbers.secLeft, timeNumbers.secRight, sSectors)
@@ -226,8 +252,9 @@ function main_tick() {
 }
 
 
+
+
 // main_tick()
 setInterval(() => {
-  console.log('oi');
   main_tick()
 }, 1000)

@@ -1,0 +1,14 @@
+#canvas {
+  border: 1px solid black
+}
+#beauty-clock {
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+}
+img{
+  width: 600px;
+  border-width: 5px;
+  border-color: black;
+  border-style: solid;
+}

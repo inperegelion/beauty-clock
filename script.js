@@ -1,7 +1,9 @@
 var solidColor = '#ff0000'
 var auxiliaryColor = '#ffff00'
 var noneColor = '#ffffff'
+var hideNoneColorPicker = false
 var strokeColor = '#000000'
+var addStrokes = true
 var outerRingRadius = 150
 var centerPosition = {
   x: 200,
@@ -29,6 +31,9 @@ nonCol.value = noneColor
 nonCol.addEventListener('input', (event) => {
   noneColor = event.target.value
 }, false)
+if (!hideNoneColorPicker) {
+  document.getElementById('ncpp').style.display = 'none'
+}
 
 // strCol = document.querySelector('#strokeColorPicker')
 // strCol.value = strokeColor
@@ -65,7 +70,9 @@ class sSector {
     ctx.fillStyle = this.color
     ctx.fill();
     ctx.strokeStyle = this.strokeColor
-    // // ctx.stroke()
+    if (addStrokes) {
+      ctx.stroke()
+    }
   }
   setColor(newColor, toDraw = true) {
     this.color = newColor
@@ -93,7 +100,9 @@ class mSector {
     ctx.fillStyle = this.color
     ctx.fill();
     ctx.strokeStyle = this.strokeColor
-    // ctx.stroke()
+    if (addStrokes) {
+      ctx.stroke()
+    }
   }
   setColor(newColor, toDraw = false) {
     this.color = newColor
@@ -121,7 +130,9 @@ class hSector {
     ctx.fillStyle = this.color
     ctx.fill();
     ctx.strokeStyle = this.strokeColor
-    // ctx.stroke()
+    if (addStrokes) {
+      ctx.stroke()
+    }
   }
   setColor(newColor, toDraw = true) {
     this.color = newColor
@@ -166,7 +177,7 @@ hSectors = hSectors.map((element, index, array) => {
 })
 
 function drawAllClock() {
-  ctx.clearRect(0, 0, 200, 200)
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
   sSectors.map((element, index, array) => {
     element.draw()

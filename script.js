@@ -31,7 +31,7 @@ nonCol.value = noneColor
 nonCol.addEventListener('input', (event) => {
   noneColor = event.target.value
 }, false)
-if (!hideNoneColorPicker) {
+if (hideNoneColorPicker) {
   document.getElementById('ncpp').style.display = 'none'
 }
 

@@ -8,29 +8,37 @@
 </head>
 
 <body>
-  <p>my try: 😃</p>
   <canvas id='beauty-clock'></canvas>
   <br>
-
   <div class="color-picker">
     <p>Pick your colors up:</p>
-
-    <div>
-      <input type="color" id="solidColorPicker" name="solidColorPicker">
-      <label for="solidColorPicker">solidColor</label>
-    </div>
-    <div>
-      <input type="color" id="auxiliaryColorPicker" name="auxiliaryColorPicker">
-      <label for="auxiliaryColorPicker">auxiliaryColor</label>
-    </div>
-    <div id="ncpp">
-      <input type="color" id="noneColorPicker" name="noneColorPicker">
-      <label for="noneColorPicker">noneColor</label>
-    </div>
-    <!-- <div>
-      <input type="color" id="strokeColorPicker" name="strokeColorPicker">
-      <label for="strokeColorPicker">strokeColor</label>
-    </div> -->
+    <table class="color-picker">
+      <tr>
+        <th class="zoneHeader">circle</th>
+        <th class="zoneHeader">main color</th>
+        <th class="zoneHeader">auxiliary color</th>
+      </tr>
+      <tr>
+        <td class="zoneHeader">hour</td>
+        <td><input id="solidHourColorPicker" type="color"></td>
+        <td><input id="auxiliaryHourColorPicker" type="color"></td>
+      </tr>
+      <tr>
+        <td class="zoneHeader">minute</td>
+        <td><input id="solidMinuteColorPicker" type="color"></td>
+        <td><input id="auxiliaryMinuteColorPicker" type="color"></td>
+      </tr>
+      <tr>
+        <td class="zoneHeader">second</td>
+        <td><input id="solidSecondColorPicker" type="color"></td>
+        <td><input id="auxiliarySecondColorPicker" type="color"></td>
+      </tr>
+      <tr>
+        <td class="zoneHeader">other:</td>
+        <td>none Color <input id="noneColorPicker" type="color"></td>
+        <td>stroke Color <input id="strokeColorPicker" type="color"></td>
+      </tr>
+    </table>
   </div>
   <script src="script.js" charset="utf-8"></script>
 </body>

@@ -1,5 +1,12 @@
-var solidColor = '#ff0000'
-var auxiliaryColor = '#ffff00'
+var solidHourColor = '#ff0000'
+var auxiliaryHourColor = '#ffff00'
+
+var solidMinuteColor = '#ff0000'
+var auxiliaryMinuteColor = '#ffff00'
+
+var solidSecondColor = '#ff0000'
+var auxiliarySecondColor = '#ffff00'
+
 var noneColor = '#ffffff'
 var hideNoneColorPicker = false
 var strokeColor = '#000000'
@@ -14,32 +21,48 @@ const ctx = canvas.getContext('2d')
 ctx.canvas.width = 400;
 ctx.canvas.height = 400;
 
-let solCol, auxCol, nonCol, strCol
+let shcp, ahcp, smcp, amcp, sscp, ascp,strCol,nonCol;
 
-solCol = document.querySelector('#solidColorPicker')
-solCol.value = solidColor
-solCol.addEventListener('input', (event) => {
-  solidColor = event.target.value
+shcp = document.querySelector('#solidHourColorPicker')
+shcp.value = solidHourColor
+shcp.addEventListener('input', (event) => {
+  solidHourColor = event.target.value
 }, false)
-auxCol = document.querySelector('#auxiliaryColorPicker')
-auxCol.value = auxiliaryColor
-auxCol.addEventListener('input', (event) => {
-  auxiliaryColor = event.target.value
+ahcp = document.querySelector('#auxiliaryHourColorPicker')
+ahcp.value = auxiliaryHourColor
+ahcp.addEventListener('input', (event) => {
+  auxiliaryHourColor = event.target.value
+}, false)
+smcp = document.querySelector('#solidMinuteColorPicker')
+smcp.value = solidMinuteColor
+smcp.addEventListener('input', (event) => {
+  solidMinuteColor = event.target.value
+}, false)
+amcp = document.querySelector('#auxiliaryMinuteColorPicker')
+amcp.value = auxiliaryMinuteColor
+amcp.addEventListener('input', (event) => {
+  auxiliaryMinuteColor = event.target.value
+}, false)
+sscp = document.querySelector('#solidSecondColorPicker')
+sscp.value = solidSecondColor
+sscp.addEventListener('input', (event) => {
+  solidSecondColor = event.target.value
+}, false)
+ascp = document.querySelector('#auxiliarySecondColorPicker')
+ascp.value = auxiliarySecondColor
+ascp.addEventListener('input', (event) => {
+  auxiliarySecondColor = event.target.value
+}, false)
+strCol = document.querySelector('#strokeColorPicker')
+strCol.value = strokeColor
+strCol.addEventListener('input', (event) => {
+  strokeColor = event.target.value
 }, false)
 nonCol = document.querySelector('#noneColorPicker')
 nonCol.value = noneColor
 nonCol.addEventListener('input', (event) => {
   noneColor = event.target.value
 }, false)
-if (hideNoneColorPicker) {
-  document.getElementById('ncpp').style.display = 'none'
-}
-
-// strCol = document.querySelector('#strokeColorPicker')
-// strCol.value = strokeColor
-// strCol.addEventListener('input', (event) => {
-//   strokeColor = event.target.value
-// }, false)
 
 
 sSectors = [undefined, undefined, undefined, undefined, undefined, undefined]
@@ -54,6 +77,7 @@ hZones = {
 
 class sSector {
   constructor() {
+    this.type = 'second'
     this.x = centerPosition.x //absolute
     this.y = centerPosition.y
     this.radius = outerRingRadius
@@ -84,6 +108,7 @@ class sSector {
 
 class mSector {
   constructor() {
+    this.type = 'minute'
     this.x = centerPosition.x //absolute
     this.y = centerPosition.y
     this.radius = outerRingRadius * 2 / 3
@@ -201,7 +226,7 @@ function setHourColors(hour) {
     if (hZones[zone].includes(hour)) {
       let solidHour = hZones[zone][1]
       let auxiliaryHour = hour - solidHour
-      hSectors[solidHour / 3].setColor(solidColor, false)
+      hSectors[solidHour / 3].setColor(solidHourColor, false)
       if (auxiliaryHour != 0) {
         let bar = solidHour / 3 + auxiliaryHour;
         if (bar == 4) {
@@ -209,7 +234,7 @@ function setHourColors(hour) {
         } else if (auxiliaryHour == 11) {
           bar = 3
         }
-        hSectors[bar].setColor(auxiliaryColor, false)
+        hSectors[bar].setColor(auxiliaryHourColor, false)
       }
       break
     }
@@ -217,7 +242,7 @@ function setHourColors(hour) {
 }
 
 function setOuterRings(m10, m01, sectors) {
-  sectors[m10].setColor(solidColor, false)
+  // sectors[m10].setColor(solidColor, false)
   if (m01 != 0) {
     if (m01 % 2 == 1) {
       m01 = m10 + ((m01 + 1) / 2)
@@ -234,10 +259,19 @@ function setOuterRings(m10, m01, sectors) {
       if (m01plus >= 6) {
         m01plus -= 6
       }
-      sectors[m01plus].setColor(auxiliaryColor, false)
+      if (sectors[0].type == 'second') {
+        sectors[m01plus].setColor(auxiliarySecondColor, false)
+      } else if (sectors[0].type == 'minute') {
+        sectors[m01plus].setColor(auxiliaryMinuteColor, false)
+      }
     }
-
-    sectors[m01].setColor(auxiliaryColor, false)
+    if (sectors[0].type == 'second') {
+      sectors[m10].setColor(solidSecondColor, false)
+      sectors[m01].setColor(auxiliarySecondColor, false)
+    } else if (sectors[0].type == 'minute') {
+      sectors[m10].setColor(solidMinuteColor, false)
+      sectors[m01].setColor(auxiliaryMinuteColor, false)
+    }
   }
 }
 

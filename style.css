@@ -17,6 +17,17 @@ canvas {
   margin: 0 auto;
 }
 
-div.color-picker {
+.color-picker {
   margin: 0 auto;
+}
+
+table, td, th {
+  border-collapse: collapse;
+  border: 1px solid black;
+  text-align: center;
+  padding: 1vh;
+  /* background: red */
+}
+.zoneHeader{
+  background-color: #aaaaaa
 }

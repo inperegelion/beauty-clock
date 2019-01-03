@@ -10,18 +10,18 @@ var auxiliarySecondColor = '#ffff00'
 var noneColor = '#ffffff'
 var hideNoneColorPicker = false
 var strokeColor = '#000000'
-var addStrokes = true
-var outerRingRadius = 150
+var outerRingRadius = 200
 var centerPosition = {
-  x: 200,
-  y: 200
+  x: 210,
+  y: 210
 }
 const canvas = document.getElementById('beauty-clock');
 const ctx = canvas.getContext('2d')
-ctx.canvas.width = 400;
-ctx.canvas.height = 400;
+ctx.canvas.width = 420;
+ctx.canvas.height = 420;
 
-let shcp, ahcp, smcp, amcp, sscp, ascp,strCol,nonCol;
+let shcp, ahcp, smcp, amcp, sscp, ascp, strCol, nonCol;
+
 
 shcp = document.querySelector('#solidHourColorPicker')
 shcp.value = solidHourColor
@@ -82,7 +82,6 @@ class sSector {
     this.y = centerPosition.y
     this.radius = outerRingRadius
     this.color = noneColor
-    this.strokeColor = strokeColor
     this.sectorStart = Math.PI * (-2 / 3)
     this.sectorEnd = Math.PI / -3
   }
@@ -93,10 +92,8 @@ class sSector {
     ctx.closePath();
     ctx.fillStyle = this.color
     ctx.fill();
-    ctx.strokeStyle = this.strokeColor
-    if (addStrokes) {
-      ctx.stroke()
-    }
+    ctx.strokeStyle = strokeColor
+    ctx.stroke()
   }
   setColor(newColor, toDraw = true) {
     this.color = newColor
@@ -113,7 +110,6 @@ class mSector {
     this.y = centerPosition.y
     this.radius = outerRingRadius * 2 / 3
     this.color = noneColor
-    this.strokeColor = strokeColor
     this.sectorStart = Math.PI * (-2 / 3)
     this.sectorEnd = Math.PI * (-1 / 3)
   }
@@ -124,10 +120,8 @@ class mSector {
     ctx.closePath();
     ctx.fillStyle = this.color
     ctx.fill();
-    ctx.strokeStyle = this.strokeColor
-    if (addStrokes) {
-      ctx.stroke()
-    }
+    ctx.strokeStyle = strokeColor
+    ctx.stroke()
   }
   setColor(newColor, toDraw = false) {
     this.color = newColor
@@ -143,7 +137,6 @@ class hSector {
     this.y = centerPosition.y
     this.radius = outerRingRadius / 3
     this.color = noneColor
-    this.strokeColor = strokeColor
     this.sectorStart = Math.PI * (-3 / 4)
     this.sectorEnd = Math.PI / -4
   }
@@ -154,10 +147,8 @@ class hSector {
     ctx.closePath();
     ctx.fillStyle = this.color
     ctx.fill();
-    ctx.strokeStyle = this.strokeColor
-    if (addStrokes) {
-      ctx.stroke()
-    }
+    ctx.strokeStyle = strokeColor
+    ctx.stroke()
   }
   setColor(newColor, toDraw = true) {
     this.color = newColor
@@ -242,7 +233,6 @@ function setHourColors(hour) {
 }
 
 function setOuterRings(m10, m01, sectors) {
-  // sectors[m10].setColor(solidColor, false)
   if (m01 != 0) {
     if (m01 % 2 == 1) {
       m01 = m10 + ((m01 + 1) / 2)
@@ -296,8 +286,6 @@ function main_tick() {
   setOuterRings(timeNumbers.secLeft, timeNumbers.secRight, sSectors)
   drawAllClock()
 }
-
-
 
 
 // main_tick()

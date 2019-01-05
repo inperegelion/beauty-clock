@@ -8,7 +8,6 @@ var solidSecondColor = '#ff0000'
 var auxiliarySecondColor = '#ffff00'
 
 var noneColor = '#ffffff'
-var hideNoneColorPicker = false
 var strokeColor = '#000000'
 var outerRingRadius = 200
 var centerPosition = {

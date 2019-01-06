@@ -3,7 +3,7 @@
   "short_name": "Beauty-clock",
   "description": "A simple clock in unique form",
   "lang": "uk-UA",
-  "start_url": "./index.html",
+  "start_url": "https://perehelion.github.io/beauty-clock/index.html",
   "display": "minimal-ui",
   "theme_color": "#606060",
   "orientation": "portrait",

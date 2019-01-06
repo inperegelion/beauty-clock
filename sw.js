@@ -14,10 +14,10 @@ workbox.routing.registerRoute(
   workbox.strategies.networkFirst()
 );
 workbox.routing.registerRoute(
-  'index.html',
+  './index.html',
   workbox.strategies.networkFirst()
 );
 workbox.routing.registerRoute(
-  'style.css',
+  './style.css',
   workbox.strategies.networkFirst()
 );
